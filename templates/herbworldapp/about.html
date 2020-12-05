@@ -1,0 +1,171 @@
+{% extends 'herbworldapp/basic.html' %}
+
+{% load static %}
+
+{% block title%} About Us{% endblock %}
+
+{% block css %}
+
+.team-grid {
+color: #313437;
+background-color: #fff;
+}
+
+.team-grid p {
+color: #7d8285;
+}
+
+.team-grid h2 {
+font-weight: bold;
+margin-bottom: 40px;
+padding-top: 40px;
+color: inherit;
+}
+
+@media (max-width:767px) {
+.team-grid h2 {
+margin-bottom: 25px;
+padding-top: 25px;
+font-size: 24px;
+}
+}
+
+.team-grid .intro {
+font-size: 16px;
+max-width: 500px;
+margin: 0 auto;
+}
+
+.team-grid .intro p {
+margin-bottom: 0;
+}
+
+.team-grid .people {
+padding: 50px 0;
+}
+
+.team-grid .item {
+margin-bottom: 30px;
+}
+
+.team-grid .item .box {
+text-align: center;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+height: 330px;
+position: relative;
+overflow: hidden;
+}
+
+.team-grid .item .cover {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(41, 30, 111, 0.5);
+transition: opacity 0.15s ease-in;
+opacity: 0;
+padding-top: 120px;
+color: #fff;
+text-shadow: 1px 1px 1px rgba(0,0,0,0.15);
+}
+
+.team-grid .item:hover .cover {
+opacity: 1;
+}
+
+.team-grid .item .name {
+font-weight: bold;
+font-size: 35px;
+margin-bottom: 8px;
+}
+
+.team-grid .item .title {
+text-transform: uppercase;
+font-weight: bold;
+color: #bbd8fb;
+letter-spacing: 2px;
+font-size: 15px;
+margin-bottom: 20px;
+}
+
+.team-grid .social {
+font-size: 25px;
+}
+
+.team-grid .social a {
+color: inherit;
+margin: 0 10px;
+display: inline-block;
+opacity: 0.7;
+}
+
+.team-grid .social a:hover {
+opacity: 1;
+}
+
+
+{% endblock %}
+
+{% block body %}
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="team-grid">
+      <div class="container">
+        <div class="intro">
+          <h2 class="text-center">Team Members</h2>
+        </div>
+        <div class="row people">
+          <div class="col-md-4 item">
+            <div class="box" style="background-image:url('../../../static/images/2.jpg')">
+              <div class="cover">
+                <h3 class="name">Dhruv <br>Kothari</h3>
+                <div class="social"><a href="https://www.linkedin.com/in/kotharidhruv/"><i class="fa fa-linkedin-square"></i></a><a href="https://twitter.com/_kothariji">
+                  <i class="fa fa-twitter"></i></a><a href="https://www.instagram.com/junior.kothari/"><i class="fa fa-instagram"></i></a>
+                  <a href="https://github.com/kothariji"><i class="fa fa-github-square"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 item">
+            <div class="box" style="background-image:url('../../../static/images/3.jpg')">
+              <div class="cover">
+                <h3 class="name">Akash <br>Salvi</h3>
+                <div class="social"><a href="https://www.linkedin.com/in/akash-salvi-30327217b/"><i class="fa fa-linkedin-square"></i></a>
+                  <a href="https://www.instagram.com/akash.1_11_00/"><i class="fa fa-instagram"></i></a>
+                      <a href="https://github.com/Akash-Salvi"><i class="fa fa-github-square"></i></a>
+                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 item">
+            <div class="box" style="background-image:url('../../../static/images/1.jpg')">
+              <div class="cover">
+                <h3 class="name">Anushka <br> Deshpande</h3>
+                <div class="social"><a href="https://www.linkedin.com/in/anushka-deshpande-79059217b/"><i class="fa fa-linkedin-square"></i></a>
+                  <a href="https://www.instagram.com/nushka_deshpande/"><i class="fa fa-instagram"></i></a>
+                      <a href="https://github.com/anushka-deshpande"><i class="fa fa-github-square"></i></a>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- /container -->
+
+</main>
+
+
+
+
+
+{% endblock %}
