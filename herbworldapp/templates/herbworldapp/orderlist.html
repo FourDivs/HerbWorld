@@ -105,7 +105,7 @@ flex-direction: row-reverse;
                 <strong>Product Id: </strong> {{product.product_id}}
               </div>
               <div class="col col-6">
-                <strong>Nursery Id: </strong> {{product.nursery_id}}
+                <strong>Order Id: </strong> {{product.order_id}}
               </div>
             </div>
             <div class="row">
@@ -121,7 +121,7 @@ flex-direction: row-reverse;
             </div>
             {% csrf_token %}
             <div class="row justify-content-end">
-              <button type="button buynow" class = "btn btn-danger"
+              <button type="button buynow" class = "btn btn-danger" data-toggle="modal"
                data-target="#orderModal{{product.product_id}}">Cancel</button>
             </div>
           </div>
@@ -143,7 +143,7 @@ flex-direction: row-reverse;
             </button>
           </div>
           <div class="modal-body">
-            <form action="order" method="post">
+            <form action="cancelorder" method="post">
               <div class="row">
                 <div class="col col-6">
                   <label for="productid">Product Id</label>
@@ -153,13 +153,13 @@ flex-direction: row-reverse;
                   </div>
                 </div>
                 <div class="col col-6">
-                  <label for="nurseryid">Nursery Id</label>
+                  <label for="orderid">Order Id</label>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1">@</span>
                     </div>
-                    <input type="text" class="form-control form-control-lg" id="nurseryid"
-                      name="nurseryid" value="{{product.nursery_id}}" readonly>
+                    <input type="text" class="form-control form-control-lg" id="orderid"
+                      name="orderid" value="{{product.order_id}}" readonly>
                   </div>
                 </div>
               </div>
@@ -232,7 +232,7 @@ flex-direction: row-reverse;
     {% endfor %}
   </div>
 </div>
-
+</div>
 
 
 

@@ -144,12 +144,12 @@ def myOrders(request):
 
 def cancelOrder(request):
     if request.method == 'POST':
-        cancel_orderID = request.POST['order_id']
+        cancel_orderID = request.POST['orderid']
         cancel_orderID = int(cancel_orderID)
         cancel_order = Order.objects.get(order_id = cancel_orderID)
         cancel_order.delete()
         props = Order.objects.filter(customer_id=request.user.username)
-        return redirect('herbworldapp/orderlist.html', {'props':props})
+        return redirect('/')
 
 def manageOrders(request):
     props = Order.objects.filter(nursery_id=request.user.username)
