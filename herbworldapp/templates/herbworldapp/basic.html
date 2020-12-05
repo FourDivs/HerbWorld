@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" />
+  
+  {% block head %} {% endblock %}
+  <title>HerbWorld{% block title %}{% endblock %}</title>
+  <style>
+
+    #navbar {
+      background: white;
+      color: rgb(13, 26, 38);
+      position: fixed;
+      top: 0;
+      height: 80px;
+      line-height: 80px;
+      width: 100vw;
+      margin-bottom: 100px;
+      -webkit-box-shadow: 0px 14px 16px -8px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 14px 16px -8px rgba(0,0,0,0.39);
+    box-shadow: 0px 14px 16px -8px rgba(0,0,0,0.39);
+    z-index: 10;
+    }
+
+
+    body{
+      background: rgba(33,107,57,0);
+    }
+
+    .logo {
+      float: left;
+      margin-left: 28px;
+      font-size: 1.5em;
+      height: 60px;
+      letter-spacing: 1px;
+      z-index: 10;
+    } 
+    .navlogo{
+      max-width: 60px;
+      max-height: 60px;
+      z-index: 10;
+    }
+    #navbar ul {
+      display: inline-block;
+      float: right;
+      list-style: none;
+      /* margin-right: 14px; */
+      margin-top: -2px;
+      text-align: right;
+      transition: transform 0.5s ease-out;
+      -webkit-transition: transform 0.5s ease-out;
+      z-index: 10;
+    } 
+
+    #navbar li {
+      display: inline-block;
+    }
+
+    #navbar li a {
+      color: black;
+      display: block;
+      font-size: 2.3vh;
+      font-weight: 600;
+      height: 50px;
+      letter-spacing: 1px;
+      margin: 0 20px;
+      padding: 0 4px;
+      position: relative;
+      text-decoration: none;
+      transition: all 0.5s ease;
+      z-index: 10;
+      -webkit-transition: all 0.5s ease;
+    }
+
+    #navbar li a:hover {
+      color: #216B39;
+      transition: all 1s ease;
+      -webkit-transition: all 1s ease;
+    }
+
+
+    #navbar li a:before, #navbar li a:after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 1px;
+      bottom: -1px;
+      background: rgb(13, 26, 38);
+    }
+
+    #navbar li a:before {
+      left: 0;
+      transition: 0.5s;
+    }
+
+    #navbar li a:after {
+      background: rgb(13, 26, 38);
+      right: 0;
+    }
+
+    #navbar li a:hover:before {
+      background: rgb(13, 26, 38);
+      width: 100%;
+      transition: width 0.5s cubic-bezier((0.22, 0.61, 0.36, 1));
+    }
+
+    #navbar li a:hover:after {
+      background: transparent;
+      width: 100%;
+    }
+
+    body{
+      font-family: 'Poppins', 'sans-serif';
+    }
+
+    .heading1{
+      color: #216B39;
+      font-weight: 800;
+      font-size: 2vw;
+      text-decoration: none;
+    }
+    .heading2{
+      color: #000000;
+      font-weight: 800;
+      font-size: 2vw;
+      text-decoration: none;
+    }
+    a {
+    text-decoration: none !important;
+}
+    .maincontent{
+      margin-top: 100px;
+    }
+
+    
+.contact{
+    color: white;
+    background-image: linear-gradient(to right, #216b39, #1c7839, #158538, #0b9336, #00a032);
+    height: 200px;
+    width: 100%;
+    text-align: center;
+    font-weight: 800;
+}
+
+.conhr {
+    border: 1px solid whitesmoke;
+    border-radius: 200px;
+    width: 500px;
+    align-content: center;
+    margin: 10px 0px 10px 315px;
+    
+}
+
+.madewithlove{
+    
+    margin-top: 20px;
+    font-family: 'Poppins';
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.fa-heart{
+    color: red;
+}
+
+    
+    {% block css %}
+
+    {% endblock %}
+  </style>
+</head>
+
+<body>
+
+<nav id="navbar" class="">
+  <div class="nav-wrapper">
+    <div class="logo">
+      <a href="/"><img class="navlogo" src="{% static '/images/HerbWorld.png' %}"> <span class = "heading1">Herb</span><span class = "heading2">World</span></a>
+    </div>
+    <ul id="menu">
+      {% if user.is_authenticated %}
+        {% if user.customer %}
+          <li><a href="/nurserylist">Nursery Near Me</a></li>
+          <li><a href="/myorders">My Orders</a></li>
+        {% else %}
+          <li><a href="/manageorders">Manage Orders</a></li>
+          <li><a href="/manageproducts">Manage Products</a></li>
+        {% endif %}
+         <li><a href="/about">About</a></li>
+      <li><a href="/contactus">Contact Us</a></li>
+        <li><a href="/logout">Logout</a></li>
+      {% else %}
+       <li><a href="/about">About</a></li>
+      <li><a href="/contactus">Contact Us</a></li>
+      <li><a href="/login">Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+
+      <div class = "maincontent">
+         {% block body %}
+       
+      {%endblock%}  
+      </div>
+      
+
+      <div class="contact" id="contact">
+        <div class="container mt-5 pt-5">
+            <hr class="conhr">
+            <h2>Thank you for Visiting!</h2>
+            <hr class="conhr">
+            <div class="madewithlove">
+                <p>Designed by Dhruv , Akash , Anushka</p>
+            </div>
+        </div>
+    </div>
+      
+
+
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+      <script src="https://js.braintreegateway.com/web/dropin/1.24.0/js/dropin.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      <script>
+        AOS.init();
+      </script>
+       <script type="text/javascript">
+        {% block js %}
+
+        {% endblock %}
+      </script>
+    </div>
+</body>
+
+</html>
