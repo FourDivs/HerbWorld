@@ -18,6 +18,7 @@ urlpatterns = [
 
 
     path("myorders/", views.myOrders, name="myOrders"),
+    path("myorders/cancelorder", views.cancelOrder, name="cancelOrder"),
     path("manageorders/", views.manageOrders, name="manageOrders"),
 
 

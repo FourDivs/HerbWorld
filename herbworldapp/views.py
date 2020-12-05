@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import Customer, Manager, Order, Product
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib import messages
 
 def home(request):
     return render(request, 'herbworldapp/home.html')
@@ -142,6 +142,14 @@ def myOrders(request):
     props = Order.objects.filter(customer_id=request.user.username)
     return render(request, 'herbworldapp/orderlist.html', {'props': props})
 
+def cancelOrder(request):
+    if request.method == 'POST':
+        cancel_orderID = request.POST['order_id']
+        cancel_orderID = int(cancel_orderID)
+        cancel_order = Order.objects.get(order_id = cancel_orderID)
+        cancel_order.delete()
+        props = Order.objects.filter(customer_id=request.user.username)
+        return redirect('herbworldapp/orderlist.html', {'props':props})
 
 def manageOrders(request):
     props = Order.objects.filter(nursery_id=request.user.username)
