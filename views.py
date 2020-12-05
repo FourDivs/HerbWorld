@@ -139,6 +139,7 @@ def createOrder(request):
         quantity = int(request.POST['productquantity'])
         price = request.POST['productprice']
         address = request.POST['customeraddress']
+        
         order_total = int(price)*int(quantity)
 
         orderdata = Order(order_id=order_id, product_id=product_id, nursery_id=nursery_id,
@@ -157,6 +158,7 @@ def cancelOrder(request):
         cancel_orderID = int(cancel_orderID)
         cancel_order = Order.objects.get(order_id = cancel_orderID)
         cancel_order.delete()
+        props = Order.objects.filter(customer_id=request.user.username)
         return redirect('/')
 
 def manageOrders(request):
