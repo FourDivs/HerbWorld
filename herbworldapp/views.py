@@ -118,6 +118,15 @@ def showNurseryProducts(request, username):
     props = Product.objects.filter(nursery_id=username)
     return render(request, 'herbworldapp/productlist.html', {'props': props})
 
+def delProduct(request):
+    if request.method == 'POST':
+        del_prodID = request.POST['productid']
+        #del_prodID = int(del_prodID)
+        delete_prod = Product.objects.get(product_id = del_prodID)
+        delete_prod.delete()
+        props = Product.objects.filter(nursery_id=request.user.username)
+        return redirect('/')
+
 
 def createOrder(request):
     if request.method == 'POST':
