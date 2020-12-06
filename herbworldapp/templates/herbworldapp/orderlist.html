@@ -121,8 +121,19 @@ flex-direction: row-reverse;
             </div>
             {% csrf_token %}
             <div class="row justify-content-end">
-              <button type="button buynow" class = "btn btn-danger" data-toggle="modal"
-               data-target="#orderModal{{product.product_id}}">Cancel</button>
+
+                <form action="cancelorder" method="post">
+                {% csrf_token %}
+                  <input type="text" class="form-control form-control-lg" id="orderid"
+                      name="orderid" value="{{product.order_id}}" hidden>
+                  <button type="button buynow" class="btn btn-danger">Cancel Item</button>
+                </form>
+                {% csrf_token %}
+
+                &nbsp;&nbsp;
+                <button type="button buynow" class = "btn btn-primary" data-toggle="modal"
+                data-target="#orderModal{{product.product_id}}">Confirm Order</button>
+
             </div>
           </div>
         </div>
@@ -188,7 +199,7 @@ flex-direction: row-reverse;
                   <div class="form-group">
                     <label for="customerphone" class="required">Mobile Number</label>
                     <input type="tel" class="form-control form-control-lg" id="customerphone" name="customerphone"
-                      value="{{request.user.customer.phone}}" readonly>
+                      value="{{request.user.customer.phone}}">
                   </div>
                 </div>
               </div>
@@ -197,20 +208,20 @@ flex-direction: row-reverse;
                   <div class="form-group">
                     <label for="productprice" class="required">Price</label>
                     <input type="text" class="form-control form-control-lg" id="productprice"
-                      name="productprice" value="{{product.order_total}}" readonly>
+                      name="productprice" value="{{product.order_total}}" >
                   </div>
                 </div>
                 <div class="col col-6">
                   <div class="form-group">
                     <label for="productquantity" class="required">Quantity</label>
                     <input type="text" class="form-control form-control-lg" id="productquantity" name="productquantity"
-                      value="{{product.quantity}}" readonly >
+                      value="{{product.quantity}}" >
                   </div>
                 </div>
               </div>
               {% csrf_token %}
               <div class="modal-footer">
-                <button type="button buynow" class="btn btn-danger">Delete Order</button>
+                <button type="button buynow" class="btn cardbutton btn-block">Confirm Order</button>
               </div>
             </form>
           </div>

@@ -219,9 +219,11 @@ flex-direction: row-reverse;
                   </div>
                 </div>
               </div>
+              <input type="text" class="form-control form-control-lg" id="customerid"
+                      name="customerid" value="{{request.user.username}}" hidden>
               {% csrf_token %}
               <div class="modal-footer">
-                <button type="submit" class="btn cardbutton btn-block">Confirm Order</button>
+                <button type="submit" class="btn cardbutton btn-block">Add to Orders List</button>
               </div>
             </form>
           </div>

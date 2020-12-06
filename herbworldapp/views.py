@@ -139,6 +139,7 @@ def createOrder(request):
         quantity = int(request.POST['productquantity'])
         price = request.POST['productprice']
         address = request.POST['customeraddress']
+        
         order_total = int(price)*int(quantity)
 
         orderdata = Order(order_id=order_id, product_id=product_id, nursery_id=nursery_id,
