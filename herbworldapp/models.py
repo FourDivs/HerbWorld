@@ -53,3 +53,11 @@ class Order(models.Model):
 
     def __str__(self):
         return self.order_id
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length = 70)
+    message = models.CharField(max_length = 500)
+
+    def __str__(self):
+        return self.email

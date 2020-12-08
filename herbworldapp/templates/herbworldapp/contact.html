@@ -107,10 +107,19 @@
         {% csrf_token %}
         <form method="post">
             <h1 class="text-center" style="margin-bottom: 26px;font-family: Poppins, sans-serif;">Contact us</h1>
-            <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Name" style="border-radius: 10px;font-size: 15px;"></div>
-            <div class="form-group"><input class="form-control is-invalid" type="email" name="email" placeholder="Email" style="border-radius: 10px;font-size: 15px;"><small class="form-text text-danger">Please enter a correct email address.</small></div>
-            <div class="form-group"><textarea class="form-control" name="message" placeholder="Message" rows="14" style="border-radius: 10px;font-size: 15px;"></textarea></div>
-            <div class="form-group" style="text-align: right;"><button class="btn btn-primary btn-block btn-lg text-center" type="submit" style="border-radius: 11px;text-align: right;font-family: Poppins, sans-serif;font-size: 16px;">send </button></div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="name" placeholder="Name" style="border-radius: 10px;font-size: 15px;">
+            </div>
+            <div class="form-group">
+              <input class="form-control is-invalid" type="email" name="email" placeholder="Email" style="border-radius: 10px;font-size: 15px;">
+              <small class="form-text text-danger">Please enter a correct email address.</small>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" placeholder="Message" rows="14" style="border-radius: 10px;font-size: 15px;"></textarea>
+            </div>
+            <div class="form-group" style="text-align: right;">
+              <button class="btn btn-primary btn-block btn-lg text-center" type="submit" style="border-radius: 11px;text-align: right;font-family: Poppins, sans-serif;font-size: 16px;">send </button>
+            </div>
         {% csrf_token %}
         </form>
 </div>
