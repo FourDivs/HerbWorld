@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .models import Customer, Manager, Order, Product, Contact
+from .models import Customer, Manager, Order, Product
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
@@ -9,13 +9,6 @@ def home(request):
 
 
 def contactUs(request):
-    if request.method == 'POST':
-        name = request.POST['name']
-        email = request.POST['email']
-        message = request.POST['message']
-        ContactNew = Contact(name = name, email = email, message = message)
-        ContactNew.save()
-        return redirect('/')
     return render(request, 'herbworldapp/contact.html')
 
 
@@ -132,8 +125,7 @@ def delProduct(request):
         delete_prod = Product.objects.get(product_id = del_prodID)
         delete_prod.delete()
         props = Product.objects.filter(nursery_id=request.user.username)
-        return redirect('/')
-
+        return redirect('/manageproducts')
 
 def createOrder(request):
     if request.method == 'POST':
@@ -146,13 +138,26 @@ def createOrder(request):
         quantity = int(request.POST['productquantity'])
         price = request.POST['productprice']
         address = request.POST['customeraddress']
-
+        
         order_total = int(price)*int(quantity)
 
         orderdata = Order(order_id=order_id, product_id=product_id, nursery_id=nursery_id,
                           customer_id=customer_id, email=email, phone=phone, quantity=quantity, order_total=order_total, address=address)
         orderdata.save()
         return redirect('/')
+
+def updateProduct(request):
+    if request.method == 'POST':
+        product_id = request.POST['productid']
+        product_name = request.POST['productname']
+        quantity = int(request.POST['productquantity'])
+        price = request.POST['productprice']
+        desc = request.POST['productdescription']
+
+        Product.objects.filter(product_id=product_id).update(name=product_name, price=price, quantity=quantity,
+                               description=desc)
+        
+        return redirect('/manageproducts')
 
 
 def myOrders(request):

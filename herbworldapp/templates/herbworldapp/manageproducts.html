@@ -119,9 +119,18 @@ flex-direction: row-reverse;
               <div class="col"><strong>Product Description: </strong> {{product.description}}</div>
             </div>
             <div class="row justify-content-end">
-              <div class="col removebutton"><button class="btn btn-danger" data-toggle="modal"
-               data-target="#orderModal{{product.product_id}}">Remove</button>
-              </div>
+              <button class="btn btn-success" data-toggle="modal"
+               data-target="#updateModal{{product.product_id}}">Update</button>             
+              &nbsp;
+
+              <form action="delproduct" method="post">
+                {% csrf_token %}
+                  <input type="text" class="form-control form-control-lg" id="productid"
+                      name="productid" value="{{product.product_id}}" hidden>
+                  <button type="button buynow" class="btn btn-danger">Remove</button>
+              </form>
+              {% csrf_token %}
+              
             </div>
           </div>
         </div>
@@ -132,29 +141,31 @@ flex-direction: row-reverse;
 
 
     {% for product in props reversed %}
-    <div class="modal fade" id="orderModal{{product.product_id}}" tabindex="-1" role="dialog"
-      aria-labelledby="orderModal{{product.product_id}}" aria-hidden="true">
+    <div class="modal fade" id="updateModal{{product.product_id}}" tabindex="-1" role="dialog"
+      aria-labelledby="updateModal{{product.product_id}}" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content modalback">
           <div class="modal-header">
-            <h4 class="modal-title" id="orderModalTitle"><strong>Product Name: </strong> {{product.name}}Product Name
+            <h4 class="modal-title" id="updateModalTitle"><strong>Product Name: </strong> {{product.name}}Product Name
               <strong> </strong></h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form action="delproduct" method="post">
+            <form action="updateproduct" method="post">
               <div class="row">
 
-                <div class="col col-6">
+                <div class="col col-12">
                   <label for="productname">Product Name</label>
                   <div class="input-group mb-3">
                     <input type="text" class="form-control form-control-lg" id="productname"
-                      name="productname" value="{{product.name}}" readonly>
+                      name="productname" value="{{product.name}}" >
                   </div>
                 </div>
+              </div>
 
+              <div class="row">
                 <div class="col col-6">
                   <label for="productid">Product Id</label>
                   <div class="form-group mb-3">
@@ -162,22 +173,18 @@ flex-direction: row-reverse;
                       value="{{product.product_id}}" readonly>
                   </div>
                 </div>
-
-              </div>
-
-              <div class="row">
                 <div class="col col-6">
                   <div class="form-group">
                     <label for="productprice" class="required">Price</label>
                     <input type="text" class="form-control form-control-lg" id="productprice"
-                      name="productprice" value="{{product.price}}" readonly>
+                      name="productprice" value="{{product.price}}" >
                   </div>
                 </div>
-                <div class="col col-6">
+                <div class="col col-12">
                   <div class="form-group">
                     <label for="productquantity" class="required">Quantity</label>
                     <input type="text" class="form-control form-control-lg" id="productquantity" name="productquantity"
-                      value="{{product.quantity}}" readonly >
+                      value="{{product.quantity}}"  >
                   </div>
                 </div>
               </div>
@@ -187,14 +194,13 @@ flex-direction: row-reverse;
                   <div class="form-group">
                     <label for="productdescription" class="required">Product Description</label>
                     <input type="text" class="form-control form-control-lg" id="productdescription"
-                      name="productdescription" value="{{product.description}}" readonly>
+                      name="productdescription" value="{{product.description}}" >
                   </div>
                 </div>
               </div>
-
               {% csrf_token %}
               <div class="modal-footer">
-                <button type="button buynow" class="btn btn-danger">Delete Product</button>
+                <button type="button buynow" class="btn cardbutton">Update Product</button>
               </div>
             </form>
           </div>
