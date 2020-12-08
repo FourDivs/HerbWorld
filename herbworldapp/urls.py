@@ -20,12 +20,12 @@ urlpatterns = [
     path("myorders/", views.myOrders, name="myOrders"),
     path("myorders/cancelorder", views.cancelOrder, name="cancelOrder"),
     path("manageorders/", views.manageOrders, name="manageOrders"),
-
+    path("manageorders/confirmorder", views.cancelOrder, name="confirmOrder"),
 
 
     path("manageproducts/", views.manageProducts, name="manageProducts"),
     path("manageproducts/addproduct", views.addProduct, name="addProduct"),
-    path("manageproducts/delproduct", views.delProduct, name="delProduct"),    
+    path("manageproducts/delproduct", views.delProduct, name="delProduct"),
     path("manageproducts/updateproduct", views.updateProduct, name="updateProduct"),
 
     path("nurserylist/", views.nurseryList, name="nurseryList"),

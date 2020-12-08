@@ -138,7 +138,7 @@ def createOrder(request):
         quantity = int(request.POST['productquantity'])
         price = request.POST['productprice']
         address = request.POST['customeraddress']
-        
+
         order_total = int(price)*int(quantity)
 
         orderdata = Order(order_id=order_id, product_id=product_id, nursery_id=nursery_id,
@@ -156,7 +156,7 @@ def updateProduct(request):
 
         Product.objects.filter(product_id=product_id).update(name=product_name, price=price, quantity=quantity,
                                description=desc)
-        
+
         return redirect('/manageproducts')
 
 
@@ -175,4 +175,13 @@ def cancelOrder(request):
 
 def manageOrders(request):
     props = Order.objects.filter(nursery_id=request.user.username)
-    return render(request, 'herbworldapp/orderlist.html', {'props': props})
+    return render(request, 'herbworldapp/manageOrders.html', {'props': props})
+
+def confirmOrder(request):
+    if request.method == 'POST':
+        del_prodID = request.POST['productid']
+        #del_prodID = int(del_prodID)
+        delete_prod = Product.objects.get(product_id = del_prodID)
+        delete_prod.delete()
+        props = Product.objects.filter(nursery_id=request.user.username)
+        return redirect('/manageorders')

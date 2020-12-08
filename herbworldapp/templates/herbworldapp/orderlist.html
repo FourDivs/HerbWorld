@@ -93,7 +93,7 @@ flex-direction: row-reverse;
     <div class="col text-center">
       <div class="row  mt-5 mb-5 pt-3">
         <div class="col text-center">
-          <h2 class="loginheading"><span class="loginheading1">Plant </span><span class="loginheading2">Nearby</span>
+          <h2 class="loginheading"><span class="loginheading1">My </span><span class="loginheading2">Orders</span>
         </div>
       </div>
       {% for product in props reversed %}
@@ -129,108 +129,13 @@ flex-direction: row-reverse;
                   <button type="button buynow" class="btn btn-danger">Cancel Item</button>
                 </form>
                 {% csrf_token %}
-
-                &nbsp;&nbsp;
-                <button type="button buynow" class = "btn btn-primary" data-toggle="modal"
-                data-target="#orderModal{{product.product_id}}">Confirm Order</button>
-
             </div>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
-
-    {% for product in props reversed %}
-    <div class="modal fade" id="orderModal{{product.product_id}}" tabindex="-1" role="dialog"
-      aria-labelledby="orderModal{{product.product_id}}" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content modalback">
-          <div class="modal-header">
-            <h4 class="modal-title" id="orderModalTitle"><strong>Product Name: </strong> {{product.name}}Product Name
-              <strong> </strong></h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form action="cancelorder" method="post">
-              <div class="row">
-                <div class="col col-6">
-                  <label for="productid">Product Id</label>
-                  <div class="form-group mb-3">
-                    <input type="text" class="form-control form-control-lg" id="productid" name="productid"
-                      value="{{product.product_id}}" readonly>
-                  </div>
-                </div>
-                <div class="col col-6">
-                  <label for="orderid">Order Id</label>
-                  <div class="input-group mb-3">
-                    <input type="text" class="form-control form-control-lg" id="orderid"
-                      name="orderid" value="{{product.order_id}}" readonly>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col col-6">
-                  <div class="form-group">
-                    <label for="customerfirstname" class="required">First Name</label>
-                    <input type="text" class="form-control form-control-lg" id="customerfirstname"
-                      name="customerfirstname" value="{{request.user.first_name}}" readonly>
-                  </div>
-                </div>
-                <div class="col col-6">
-                  <div class="form-group">
-                    <label for="customerlastname" class="required">Last Name</label>
-                    <input type="text" class="form-control form-control-lg" id="customerlastname"
-                      name="customerlastname" value="{{request.user.last_name}}" readonly>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col col-6">
-                  <div class="form-group">
-                    <label for="customeremail" class="required">Email Address</label>
-                    <input type="email" class="form-control form-control-lg" id="customeremail"
-                      name="customeremail" value="{{request.user.email}}" readonly>
-                  </div>
-                </div>
-                <div class="col col-6">
-                  <div class="form-group">
-                    <label for="customerphone" class="required">Mobile Number</label>
-                    <input type="tel" class="form-control form-control-lg" id="customerphone" name="customerphone"
-                      value="{{request.user.customer.phone}}">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col col-6">
-                  <div class="form-group">
-                    <label for="productprice" class="required">Price</label>
-                    <input type="text" class="form-control form-control-lg" id="productprice"
-                      name="productprice" value="{{product.order_total}}" >
-                  </div>
-                </div>
-                <div class="col col-6">
-                  <div class="form-group">
-                    <label for="productquantity" class="required">Quantity</label>
-                    <input type="text" class="form-control form-control-lg" id="productquantity" name="productquantity"
-                      value="{{product.quantity}}" >
-                  </div>
-                </div>
-              </div>
-              {% csrf_token %}
-              <div class="modal-footer">
-                <button type="button buynow" class="btn cardbutton btn-block">Confirm Order</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
   </div>
-</div>
 </div>
 
 
