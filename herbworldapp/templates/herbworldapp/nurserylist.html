@@ -105,6 +105,19 @@ flex-direction: row-reverse;
                 <strong>Nursery Name: </strong> {{nursery.nursery_name}}
               </div>
             </div>
+            <div class="row">
+              <div class="col">
+                <strong>Owner Name: </strong> {{nursery.user.first_name}} {{nursery.user.last_name}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <strong>Email : </strong> {{nursery.user.email}}
+              </div>
+              <div class="col">
+                <strong>Phone : </strong> {{nursery.phone}}
+              </div>
+            </div>
             <div class="row justify-content-end">
               <div class="col viewdetails"><button class="btn btn-success" onClick="window.location='{{nursery.user.username}}';">See Products</button>
               </div>

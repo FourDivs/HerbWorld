@@ -8,7 +8,7 @@ class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=12)
     profile_image = models.ImageField(
-        null=True, upload_to="herbworldapp/images/", default="neuroly/profile_images/default.jpg")
+        null=True, upload_to="media/herbworldapp/images/", default="neuroly/profile_images/default.jpg")
 
     def __str__(self):
         return self.user.username
@@ -33,7 +33,7 @@ class Product(models.Model):
     nursery_id = models.CharField(max_length=50)
     description = models.CharField(max_length=300)
     product_image = models.ImageField(
-        null=True, upload_to="herbworldapp/images/", default="herbworldapp/images/")
+        null=True, upload_to="herbworldapp/images/", default="herbworldapp/images/M1_1.png")
 
     def __str__(self):
         return self.product_id
