@@ -33,7 +33,7 @@ class Product(models.Model):
     nursery_id = models.CharField(max_length=50)
     description = models.CharField(max_length=300)
     product_image = models.ImageField(
-        null=True, upload_to="herbworldapp/images/", default="herbworldapp/images/M1_1.png")
+        null=True, upload_to="herbworldapp/images/", default="herbworldapp/images")
 
     def __str__(self):
         return self.product_id

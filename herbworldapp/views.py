@@ -101,10 +101,13 @@ def addProduct(request):
         quantity = request.POST['productquantity']
         product_id = request.POST['productid']
         description = request.POST['productdescription']
+        image  = request.FILES["prod_image"]
+        print(image)
         nursery_id = request.user.username
 
         productdata = Product(name=name, price=price, quantity=quantity,
-                              product_id=product_id, description=description, nursery_id=nursery_id)
+                              product_id=product_id, description=description, 
+                              nursery_id=nursery_id,product_image=image)
         productdata.save()
         return redirect('/manageproducts')
 
