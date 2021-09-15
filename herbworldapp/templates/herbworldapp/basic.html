@@ -23,9 +23,14 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" />
-
-  {% block head %} {% endblock %}
-  <title>HerbWorld{% block title %}{% endblock %}</title>
+  <link rel="shortcut icon" type="image/jpg/png" href="{% static '/images/favicon.png' %}" />
+  {% block head %} 
+  {% endblock %}
+  <title>
+  HerbWorld
+  {% block title %}
+  {% endblock %}
+  </title>
   <style>
 
     #navbar {
