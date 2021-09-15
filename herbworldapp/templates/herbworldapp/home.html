@@ -22,6 +22,13 @@ font-size: 4vw;
 
 {% block body %}
 
+{% csrf_token %}
+{% if messages %}  <!-- you can put css for this message-->
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+{% endif %}
+
 <div class="container">
 
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

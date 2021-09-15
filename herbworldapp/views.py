@@ -2,14 +2,31 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import Customer, Manager, Order, Product
 from django.contrib.auth import authenticate, login, logout
+from django.core.mail import send_mail
 from django.contrib import messages
+from django.conf import settings
 
 def home(request):
     return render(request, 'herbworldapp/home.html')
 
 
 def contactUs(request):
-    return render(request, 'herbworldapp/contact.html')
+    if request.method == 'GET':
+        return render(request, 'herbworldapp/contact.html')
+    if request.method == 'POST':
+        name = request.POST['name']
+        from_email = request.POST['email']
+        message = request.POST['message']
+        try:
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [email_from,]
+            send_mail(name, message, from_email,recipient_list)
+        except Exception:
+            messages.info(request, "Email Not Send")
+        return redirect('home')
+    else:
+        messages.error(request, "404-Page not found!")
+        return redirect('home')
 
 
 def about(request):
@@ -21,10 +38,9 @@ def loginHome(request):
 
 
 def logoutHome(request):
-
     logout(request)
-
-    return redirect('/')
+    messages.info(request, "Successful Logout")
+    return redirect('home')
 
 
 def managerLogin(request):
@@ -32,9 +48,11 @@ def managerLogin(request):
         username = request.POST['managerloginusername']
         password = request.POST['managerloginpassword']
         user = authenticate(username=username, password=password)
-        login(request, user)
-
-        return redirect('/')
+        try:
+            login(request, user)
+        except Exception:
+            messages.error(request, "Invalid Credentials")
+        return redirect('home')
 
 
 def managerSignup(request):
@@ -55,7 +73,7 @@ def managerSignup(request):
         userdata = Manager(phone=phone, user=user, nursery_name=nursery_name)
         userdata.save()
 
-        return redirect('/')
+        return redirect('home')
 
 
 def customerLogin(request):
@@ -63,9 +81,11 @@ def customerLogin(request):
         username = request.POST['customerloginusername']
         password = request.POST['customerloginpassword']
         user = authenticate(username=username, password=password)
-        login(request, user)
-
-        return redirect('/')
+        try:
+            login(request, user)
+        except Exception:
+            messages.error(request, "Invalid Credentials")
+        return redirect('home')
 
 
 def customerSignup(request):
@@ -85,7 +105,7 @@ def customerSignup(request):
         userdata = Customer(phone=phone, user=user)
         userdata.save()
 
-        return redirect('/')
+        return redirect('home')
 
 
 def manageProducts(request):
@@ -147,7 +167,7 @@ def createOrder(request):
         orderdata = Order(order_id=order_id, product_id=product_id, nursery_id=nursery_id,
                           customer_id=customer_id, email=email, phone=phone, quantity=quantity, order_total=order_total, address=address)
         orderdata.save()
-        return redirect('/')
+        return redirect('home')
 
 def updateProduct(request):
     if request.method == 'POST':
@@ -174,7 +194,7 @@ def cancelOrder(request):
         cancel_order = Order.objects.get(order_id = cancel_orderID)
         cancel_order.delete()
         props = Order.objects.filter(customer_id=request.user.username)
-        return redirect('/')
+        return redirect('home')
 
 def manageOrders(request):
     props = Order.objects.filter(nursery_id=request.user.username)
