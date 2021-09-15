@@ -4,7 +4,7 @@
   <img width="100%" height="auto" src="https://user-images.githubusercontent.com/61380295/132445010-769374f9-6f36-4575-a5eb-d7bb7d95d0e3.png">
 </p>
 
-HerbWorld :seedling: <br>
+## HerbWorld :seedling: <br>
 An online portal :man_technologist: where shopkeepers can sell plants, keep records of sale :bookmark_tabs: and many more add ons 😉.<br>
 A buyer :man_office_worker: can see different shops details, and buy the plants from them online.
 
