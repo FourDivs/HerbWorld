@@ -5,8 +5,20 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.conf import settings
+from django.db import connection
+
 
 def home(request):
+    cursor = connection.cursor()
+    cursor.execute('''SELECT * FROM herbworldapp_customer''')
+    customers = cursor.fetchall()
+    print(customers)
+    # delete the user using raw sql
+    cursor.execute('''DELETE FROM herbworldapp_customer''')
+    cursor.execute('''SELECT * FROM herbworldapp_customer''')
+    customers = cursor.fetchall()
+    print(customers)
+
     return render(request, 'herbworldapp/home.html')
 
 
@@ -19,8 +31,8 @@ def contactUs(request):
         message = request.POST['message']
         try:
             email_from = settings.EMAIL_HOST_USER
-            recipient_list = [email_from,]
-            send_mail(name, message, from_email,recipient_list)
+            recipient_list = [email_from, ]
+            send_mail(name, message, from_email, recipient_list)
         except Exception:
             messages.info(request, "Email Not Send")
         return redirect('home')
@@ -121,13 +133,13 @@ def addProduct(request):
         quantity = request.POST['productquantity']
         product_id = request.POST['productid']
         description = request.POST['productdescription']
-        image  = request.FILES["prod_image"]
+        image = request.FILES["prod_image"]
         print(image)
         nursery_id = request.user.username
 
         productdata = Product(name=name, price=price, quantity=quantity,
-                              product_id=product_id, description=description, 
-                              nursery_id=nursery_id,product_image=image)
+                              product_id=product_id, description=description,
+                              nursery_id=nursery_id, product_image=image)
         productdata.save()
         return redirect('/manageproducts')
 
@@ -141,14 +153,16 @@ def showNurseryProducts(request, username):
     props = Product.objects.filter(nursery_id=username)
     return render(request, 'herbworldapp/productlist.html', {'props': props})
 
+
 def delProduct(request):
     if request.method == 'POST':
         del_prodID = request.POST['productid']
-        #del_prodID = int(del_prodID)
-        delete_prod = Product.objects.get(product_id = del_prodID)
+        # del_prodID = int(del_prodID)
+        delete_prod = Product.objects.get(product_id=del_prodID)
         delete_prod.delete()
         props = Product.objects.filter(nursery_id=request.user.username)
         return redirect('/manageproducts')
+
 
 def createOrder(request):
     if request.method == 'POST':
@@ -169,6 +183,7 @@ def createOrder(request):
         orderdata.save()
         return redirect('home')
 
+
 def updateProduct(request):
     if request.method == 'POST':
         product_id = request.POST['productid']
@@ -178,7 +193,7 @@ def updateProduct(request):
         desc = request.POST['productdescription']
 
         Product.objects.filter(product_id=product_id).update(name=product_name, price=price, quantity=quantity,
-                               description=desc)
+                                                             description=desc)
 
         return redirect('/manageproducts')
 
@@ -187,24 +202,27 @@ def myOrders(request):
     props = Order.objects.filter(customer_id=request.user.username)
     return render(request, 'herbworldapp/orderlist.html', {'props': props})
 
+
 def cancelOrder(request):
     if request.method == 'POST':
         cancel_orderID = request.POST['orderid']
         cancel_orderID = int(cancel_orderID)
-        cancel_order = Order.objects.get(order_id = cancel_orderID)
+        cancel_order = Order.objects.get(order_id=cancel_orderID)
         cancel_order.delete()
         props = Order.objects.filter(customer_id=request.user.username)
         return redirect('home')
+
 
 def manageOrders(request):
     props = Order.objects.filter(nursery_id=request.user.username)
     return render(request, 'herbworldapp/manageOrders.html', {'props': props})
 
+
 def confirmOrder(request):
     if request.method == 'POST':
         del_prodID = request.POST['productid']
-        #del_prodID = int(del_prodID)
-        delete_prod = Product.objects.get(product_id = del_prodID)
+        # del_prodID = int(del_prodID)
+        delete_prod = Product.objects.get(product_id=del_prodID)
         delete_prod.delete()
         props = Product.objects.filter(nursery_id=request.user.username)
         return redirect('/manageorders')
