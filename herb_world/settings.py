@@ -35,6 +35,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+PSQL_HOST = os.environ.get('PSQL_HOST')
+PSQL_PORT = os.environ.get('PSQL_PORT')
+PSQL_USER = os.environ.get('PSQL_USER')
+PSQL_PASSWORD = os.environ.get('PSQL_PASSWORD')
+PSQL_DB = os.environ.get('PSQL_DB')
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -82,9 +89,13 @@ WSGI_APPLICATION = 'herb_world.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": PSQL_DB,
+        "USER": PSQL_USER,
+        "PASSWORD": PSQL_PASSWORD,
+        "HOST": PSQL_HOST,
+        "PORT": PSQL_PORT,
     }
 }
 
