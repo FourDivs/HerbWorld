@@ -97,13 +97,21 @@ flex-direction: row-reverse;
           <h2 class="loginheading"><span class="loginheading1">Plants </span><span class="loginheading2">Nearby</span>
         </div>
       </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+          aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+        </div>
+      </div>
       {% for product in props %}
       <div class="row mb-5">
         <div class="col text-left">
           <div class="productdetails">
             <div class="row">
               <div class="col col-2">
-                <img src="{{product.product_image.url}}" class="card-img-top cardimage mt-3" style="width:125px ; height:125px; margin-left: auto; margin-right: auto;">
+                <img src="{{product.product_image.url}}" class="card-img-top cardimage mt-3"
+                  style="width:125px ; height:125px; margin-left: auto; margin-right: auto;">
               </div>
               <div class="col col-10">
                 <div class="row">
@@ -130,8 +138,8 @@ flex-direction: row-reverse;
                     data-target="#orderModal{{product.product_id}}">Buy Now</button>
                 </div>
               </div>
-              </div>
             </div>
+          </div>
         </div>
       </div>
       {% endfor %}
@@ -144,7 +152,8 @@ flex-direction: row-reverse;
         <div class="modal-content modalback">
           <div class="modal-header">
             <h4 class="modal-title" id="orderModalTitle"><strong>Product Name: </strong> {{product.name}}Product Name
-              <strong> </strong></h4>
+              <strong> </strong>
+            </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -165,8 +174,8 @@ flex-direction: row-reverse;
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1">@</span>
                     </div>
-                    <input type="text" class="form-control form-control-lg" id="nurseryid"
-                      name="nurseryid" value="{{product.nursery_id}}" readonly>
+                    <input type="text" class="form-control form-control-lg" id="nurseryid" name="nurseryid"
+                      value="{{product.nursery_id}}" readonly>
                   </div>
                 </div>
               </div>
@@ -190,8 +199,8 @@ flex-direction: row-reverse;
                 <div class="col col-6">
                   <div class="form-group">
                     <label for="customeremail" class="required">Email address</label>
-                    <input type="email" class="form-control form-control-lg" id="customeremail"
-                      name="customeremail" value="{{request.user.email}}" readonly>
+                    <input type="email" class="form-control form-control-lg" id="customeremail" name="customeremail"
+                      value="{{request.user.email}}" readonly>
                   </div>
                 </div>
                 <div class="col col-6">
@@ -206,15 +215,15 @@ flex-direction: row-reverse;
                 <div class="col col-6">
                   <div class="form-group">
                     <label for="productprice" class="required">Price</label>
-                    <input type="text" class="form-control form-control-lg" id="productprice"
-                      name="productprice" value="{{product.price}}" readonly>
+                    <input type="text" class="form-control form-control-lg" id="productprice" name="productprice"
+                      value="{{product.price}}" readonly>
                   </div>
                 </div>
                 <div class="col col-6">
                   <div class="form-group">
                     <label for="productquantity" class="required">Quantity</label>
                     <input type="text" class="form-control form-control-lg" id="productquantity" name="productquantity"
-                      value="{{1}}" >
+                      value="{{1}}">
                   </div>
                 </div>
               </div>
@@ -223,12 +232,12 @@ flex-direction: row-reverse;
                   <div class="form-group">
                     <label for="address" class="required">Address</label>
                     <textarea type="text" class="form-control form-control-lg" id="customeraddress"
-                      name="customeraddress"  rows = "3" placeholder = "Enter Address"></textarea>
+                      name="customeraddress" rows="3" placeholder="Enter Address"></textarea>
                   </div>
                 </div>
               </div>
-              <input type="text" class="form-control form-control-lg" id="customerid"
-                      name="customerid" value="{{request.user.username}}" hidden>
+              <input type="text" class="form-control form-control-lg" id="customerid" name="customerid"
+                value="{{request.user.username}}" hidden>
               {% csrf_token %}
               <div class="modal-footer">
                 <button type="submit" class="btn cardbutton btn-block">Add to Orders List</button>

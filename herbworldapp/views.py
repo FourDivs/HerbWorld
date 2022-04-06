@@ -9,15 +9,15 @@ from django.db import connection
 
 
 def home(request):
-    cursor = connection.cursor()
-    cursor.execute('''SELECT * FROM herbworldapp_customer''')
-    customers = cursor.fetchall()
-    print(customers)
-    # delete the user using raw sql
-    cursor.execute('''DELETE FROM herbworldapp_customer''')
-    cursor.execute('''SELECT * FROM herbworldapp_customer''')
-    customers = cursor.fetchall()
-    print(customers)
+    # cursor = connection.cursor()
+    # cursor.execute('''SELECT * FROM herbworldapp_customer''')
+    # customers = cursor.fetchall()
+    # print(customers)
+    # # delete the user using raw sql
+    # cursor.execute('''DELETE FROM herbworldapp_customer''')
+    # cursor.execute('''SELECT * FROM herbworldapp_customer''')
+    # customers = cursor.fetchall()
+    # print(customers)
 
     return render(request, 'herbworldapp/home.html')
 
