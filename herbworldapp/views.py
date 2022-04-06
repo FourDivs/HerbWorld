@@ -9,16 +9,6 @@ from django.db import connection
 
 
 def home(request):
-    # cursor = connection.cursor()
-    # cursor.execute('''SELECT * FROM herbworldapp_customer''')
-    # customers = cursor.fetchall()
-    # print(customers)
-    # # delete the user using raw sql
-    # cursor.execute('''DELETE FROM herbworldapp_customer''')
-    # cursor.execute('''SELECT * FROM herbworldapp_customer''')
-    # customers = cursor.fetchall()
-    # print(customers)
-
     return render(request, 'herbworldapp/home.html')
 
 
@@ -146,6 +136,7 @@ def addProduct(request):
 
 def nurseryList(request):
     props = Manager.objects.all()
+    print('list', props)
     return render(request, 'herbworldapp/nurserylist.html', {'props': props})
 
 
@@ -176,10 +167,11 @@ def createOrder(request):
         price = request.POST['productprice']
         address = request.POST['customeraddress']
 
-        order_total = int(price)*int(quantity)
+        order_total = int(price) * int(quantity)
 
         orderdata = Order(order_id=order_id, product_id=product_id, nursery_id=nursery_id,
-                          customer_id=customer_id, email=email, phone=phone, quantity=quantity, order_total=order_total, address=address)
+                          customer_id=customer_id, email=email, phone=phone, quantity=quantity, order_total=order_total,
+                          address=address)
         orderdata.save()
         return redirect('home')
 
@@ -226,3 +218,29 @@ def confirmOrder(request):
         delete_prod.delete()
         props = Product.objects.filter(nursery_id=request.user.username)
         return redirect('/manageorders')
+
+
+def nurserySearch(request):
+    if request.method == 'POST':
+        nursery_name = request.POST['nursery_name']
+        print(nursery_name)
+        # sql_query = '''SELECT * FROM herbworldapp_manager WHERE nursery_name='%{}%' '''.format(search_query)
+        # sql_query2 = '''SELECT * FROM herbworldapp_manager'''
+        cursor = connection.cursor()
+        sql_query = '''SELECT * FROM herbworldapp_manager WHERE nursery_name='{}';'''.format(nursery_name)
+        print(sql_query)
+        cursor.execute(sql_query)
+        props = cursor.fetchall()
+        print(props)
+        # cursor.execute('''SELECT * FROM herbworldapp_customer''')
+        # customers = cursor.fetchall()
+        # print(customers)
+        # delete the user using raw sql
+        # cursor.execute('''DELETE FROM herbworldapp_customer''')
+        # cursor.execute('''SELECT * FROM herbworldapp_customer''')
+        # customers = cursor.fetchall()
+
+        # props = Manager.objects.all()  # print(customers)
+        return render(request, 'herbworldapp/nurserylist.html', {'props': props})
+    props = Manager.objects.all()
+    return render(request, 'herbworldapp/nurserylist.html', {'props': props})

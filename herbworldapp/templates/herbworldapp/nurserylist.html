@@ -96,6 +96,15 @@ flex-direction: row-reverse;
           <h2 class="loginheading"><span class="loginheading1">Nursery </span><span class="loginheading2">Nearby</span>
         </div>
       </div>
+      <form method="post" action="/nursery-search/" class="search-container">
+        {% csrf_token %}
+        <div class="input-group mb-5">
+          <input type="text" class="form-control" id="nursery_name" name="nursery_name" placeholder="Nursery Name">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+          </div>
+        </div>
+      </form>
       {% for nursery in props reversed %}
       <div class="row mb-5">
         <div class="col text-left">
@@ -119,7 +128,8 @@ flex-direction: row-reverse;
               </div>
             </div>
             <div class="row justify-content-end">
-              <div class="col viewdetails"><button class="btn btn-success" onClick="window.location='{{nursery.user.username}}';">See Products</button>
+              <div class="col viewdetails"><button class="btn btn-success"
+                  onClick="window.location='{{nursery.user.username}}';">See Products</button>
               </div>
             </div>
           </div>

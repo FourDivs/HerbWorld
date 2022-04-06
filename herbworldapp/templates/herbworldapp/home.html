@@ -23,10 +23,11 @@ font-size: 4vw;
 {% block body %}
 
 {% csrf_token %}
-{% if messages %}  <!-- you can put css for this message-->
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
+{% if messages %}
+<!-- you can put css for this message-->
+{% for message in messages %}
+{{ message }}
+{% endfor %}
 {% endif %}
 
 <div class="container">
@@ -64,7 +65,8 @@ font-size: 4vw;
       <div class="row">
         <div class="col">
           <p data-aos="fade-right">
-            Plants bring natural beauty to our living spaces. By creating texture and balance, a room or patio can be transformed into an environment that comforts and welcomes.
+            Plants bring natural beauty to our living spaces. By creating texture and balance, a room or patio can be
+            transformed into an environment that comforts and welcomes.
             But, just like Miss Universe, plants can do more than look pretty.
             Come and explore the world of home-plants with Us!
           </p>
@@ -91,8 +93,8 @@ font-size: 4vw;
       <div class="row">
         <div class="col">
           <p data-aos="fade-right">
-              Each of Nursery partners gaurantee quality plants and plant-related products.
-              Browse through more than 500 Nurseries and find the one nearest you to bring your green friends home!
+            Each of Nursery partners gaurantee quality plants and plant-related products.
+            Browse through more than 500 Nurseries and find the one nearest you to bring your green friends home!
           </p>
         </div>
       </div>
@@ -105,11 +107,7 @@ font-size: 4vw;
 
 
 {% block js %}
-var interval = setInterval(function() {
-        $('#counter').text(number);
-        if (number >= 5000) clearInterval(interval);
-        number++;
-    }, 30);
+
 
 
 
