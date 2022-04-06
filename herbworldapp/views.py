@@ -241,6 +241,6 @@ def nurserySearch(request):
         # customers = cursor.fetchall()
 
         # props = Manager.objects.all()  # print(customers)
-        return render(request, 'herbworldapp/nurserylist.html', {'props': props})
+        return render(request, 'herbworldapp/nurserylist.html', {'props': props, 'search': {'name': nursery_name}})
     props = Manager.objects.all()
     return render(request, 'herbworldapp/nurserylist.html', {'props': props})
