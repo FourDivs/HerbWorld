@@ -135,9 +135,18 @@ def addProduct(request):
 
 
 def nurseryList(request):
-    props = Manager.objects.all()
-    print('list', props)
-    return render(request, 'herbworldapp/nurserylist.html', {'props': props})
+    cursor = connection.cursor()
+    sql_query = '''SELECT * FROM herbworldapp_manager'''
+    cursor.execute(sql_query)
+    props = cursor.fetchall()
+    nursery_list = []
+    for prop in props:
+        nursery = {}
+        nursery['nursery_id'] = prop[0]
+        nursery['phone'] = prop[1]
+        nursery['nursery_name'] = prop[4]
+        nursery_list.append(nursery)
+    return render(request, 'herbworldapp/nurserylist.html', {'props': nursery_list})
 
 
 def showNurseryProducts(request, username):
@@ -170,7 +179,8 @@ def createOrder(request):
         order_total = int(price) * int(quantity)
 
         orderdata = Order(order_id=order_id, product_id=product_id, nursery_id=nursery_id,
-                          customer_id=customer_id, email=email, phone=phone, quantity=quantity, order_total=order_total,
+                          customer_id=customer_id, email=email, phone=phone, quantity=quantity,
+                          order_total=order_total,
                           address=address)
         orderdata.save()
         return redirect('home')
@@ -227,20 +237,17 @@ def nurserySearch(request):
         # sql_query = '''SELECT * FROM herbworldapp_manager WHERE nursery_name='%{}%' '''.format(search_query)
         # sql_query2 = '''SELECT * FROM herbworldapp_manager'''
         cursor = connection.cursor()
-        sql_query = '''SELECT * FROM herbworldapp_manager WHERE nursery_name='{}';'''.format(nursery_name)
-        print(sql_query)
+        sql_query = '''SELECT * FROM herbworldapp_manager WHERE nursery_name LIKE '%{}%';'''.format(nursery_name)
         cursor.execute(sql_query)
         props = cursor.fetchall()
-        print(props)
-        # cursor.execute('''SELECT * FROM herbworldapp_customer''')
-        # customers = cursor.fetchall()
-        # print(customers)
-        # delete the user using raw sql
-        # cursor.execute('''DELETE FROM herbworldapp_customer''')
-        # cursor.execute('''SELECT * FROM herbworldapp_customer''')
-        # customers = cursor.fetchall()
-
-        # props = Manager.objects.all()  # print(customers)
-        return render(request, 'herbworldapp/nurserylist.html', {'props': props, 'search': {'name': nursery_name}})
+        nursery_list = []
+        for prop in props:
+            nursery = {}
+            nursery['nursery_id'] = prop[0]
+            nursery['phone'] = prop[1]
+            nursery['nursery_name'] = prop[4]
+            nursery_list.append(nursery)
+        return render(request, 'herbworldapp/nurserylist.html',
+                      {'props': nursery_list, 'search': {'name': nursery_name}})
     props = Manager.objects.all()
     return render(request, 'herbworldapp/nurserylist.html', {'props': props})
